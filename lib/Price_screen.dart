@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bitcoinapp/coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -6,23 +7,39 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedcurreency; 
-  @override
+  String selectedcurreency;
+  List getcurrency() {
+    List<DropdownMenuItem<String>> dropdownitems = [];
+    for (int i = 0; i < currenciesList.length; i++) {
+      String currency = currenciesList[
+          i]; //assigning the string with the index of the array from the list
+      var item = DropdownMenuItem(
+        child: Text(currency),
+        value: currency,
+      );
+      dropdownitems.add(item);
+    }
+    return dropdownitems;
+  }
 
+  @override
   Widget build(BuildContext context) {
+    getcurrency();
     return Scaffold(
       appBar: AppBar(
-        title: Text('🤑 BitCoin-App',),
+        title: Text(
+          '🤑 BitCoin-App',
+        ),
         centerTitle: true,
       ),
       body: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
             child: Card(
-              color: Colors.lightBlueAccent,
+              color: Color(0xFFFFA000),
               elevation: 5.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
@@ -44,36 +61,16 @@ class _PriceScreenState extends State<PriceScreen> {
             height: 150.0,
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child:DropdownButton<String> (
-              value: selectedcurreency, //starting value
-              items: [DropdownMenuItem(
-              child: Text('USD'),
-              value: 'USD',
-            ),
-           DropdownMenuItem(
-              child: Text('EUR'),
-              value: 'EUR',
-            ),
-            
-             DropdownMenuItem(
-              child: Text('GBP'),
-              value: 'GBP',
-            ),
-            
-
-          ],
-
-            
-        
-            onChanged: (value){
-            setState(() {
-              
-              selectedcurreency = value;
-            print(value);
-            });
-
-            }),
+            color: Color(0xFF6B24FF),
+            child: DropdownButton<String>(
+                value: selectedcurreency, //starting value
+                items: getcurrency(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedcurreency = value;
+                    print(value);
+                  });
+                }),
           ),
         ],
       ),
