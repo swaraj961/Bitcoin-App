@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:bitcoinapp/coin_data.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart';
 import 'dart:io' show Platform;
+import 'coin_data.dart';
 
-import 'coin_data.dart';
-import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -32,7 +28,7 @@ class _PriceScreenState extends State<PriceScreen> {
         onChanged: (value) {
           setState(() {
             selectedcurreency = value;
-            print(value);
+           print(value);
           });
         });
   }
@@ -76,7 +72,7 @@ void getcoindata() async{
   try{
      var data = await c1.getdata();
 setState(() {
-  bitcoinvalueinUSD = data;
+  bitcoinvalueinUSD= data;
   print(bitcoinvalueinUSD);
 });
     

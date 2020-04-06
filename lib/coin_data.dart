@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+const url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC/USD.json';
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -51,4 +52,7 @@ else {
 }
 
  }
+
+
+
 }
