@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -28,4 +33,22 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
-class CoinData {}
+class CoinData {
+ Future getdata() async {
+ http.Response response =  await http.get(url);
+ if(response.statusCode == 200){
+var fetchdata = jsonDecode(response.body);
+// String currency = jsonDecode(fetchdata)['bpi']['USD']['code'];
+// print(currency);
+// var rate = jsonDecode(fetchdata)['bpi']['USD']['rate'];
+// print(rate);
+
+return fetchdata;
+ }
+else {
+  print(response.statusCode);
+  
+}
+
+ }
+}

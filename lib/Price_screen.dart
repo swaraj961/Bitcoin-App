@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:bitcoinapp/coin_data.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart';
 import 'dart:io' show Platform;
+
+import 'coin_data.dart';
+import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -9,6 +15,8 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+
+  CoinData c1 = CoinData();
   DropdownButton<String> getdropdownbuttonAndriod() {
     List<DropdownMenuItem<String>> dropdownitems = [];
     for (String currency in currenciesList) {
@@ -61,9 +69,32 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   String selectedcurreency;
+  String bitcoinvalueinUSD;
+
+void getcoindata() async{
+ 
+  try{
+     var data = await c1.getdata();
+setState(() {
+  bitcoinvalueinUSD = jsonDecode(data) ['bpi']['USD']['rate'];
+  print(bitcoinvalueinUSD);
+});
+    
+  } catch(e){
+    print(e);
+  }
+  
+ 
+}
+ @override
+  void initState() { 
+    super.initState();
+    c1.getdata();
+  }
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -86,7 +117,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1Btc = $bitcoinvalueinUSD USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
