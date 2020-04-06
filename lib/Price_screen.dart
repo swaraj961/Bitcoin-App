@@ -69,14 +69,14 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   String selectedcurreency;
-  String bitcoinvalueinUSD;
+  String bitcoinvalueinUSD = '';
 
 void getcoindata() async{
  
   try{
      var data = await c1.getdata();
 setState(() {
-  bitcoinvalueinUSD = jsonDecode(data) ['bpi']['USD']['rate'];
+  bitcoinvalueinUSD = data;
   print(bitcoinvalueinUSD);
 });
     
@@ -89,7 +89,7 @@ setState(() {
  @override
   void initState() { 
     super.initState();
-    c1.getdata();
+   getcoindata();
   }
 
   @override

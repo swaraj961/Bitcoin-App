@@ -40,10 +40,10 @@ class CoinData {
 var fetchdata = jsonDecode(response.body);
 // String currency = jsonDecode(fetchdata)['bpi']['USD']['code'];
 // print(currency);
-// var rate = jsonDecode(fetchdata)['bpi']['USD']['rate'];
-// print(rate);
+ var rate = fetchdata['bpi']['USD']['rate'];
+print(rate);
 
-return fetchdata;
+return rate;
  }
 else {
   print(response.statusCode);
