@@ -74,6 +74,7 @@ void getcoindata() async{
      var data = await c1.getdata(selectedcurreency);
 setState(() {
   bitcoinvalue= data.toString();
+
   print(bitcoinvalue);
 });
     
@@ -119,6 +120,7 @@ setState(() {
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,
+                    fontWeight: FontWeight.w600
                   ),
                 ),
               ),

@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
           primaryColor: Color(0xFF6B24FF),
-          scaffoldBackgroundColor: Colors.white),
+          scaffoldBackgroundColor: Color(0xFF7a4ee0),),
       home: PriceScreen(),
     );
   }
