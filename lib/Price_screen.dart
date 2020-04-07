@@ -65,15 +65,15 @@ class _PriceScreenState extends State<PriceScreen> {
     return widget;
   }
 
-  var selectedcurreency;
-  String bitcoinvalue = '';
+  String selectedcurreency;
+  var bitcoinvalue = '';
 
 void getcoindata() async{
  
   try{
      var data = await c1.getdata(selectedcurreency);
 setState(() {
-  bitcoinvalue= data;
+  bitcoinvalue= data.toString();
   print(bitcoinvalue);
 });
     
