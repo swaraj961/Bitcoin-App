@@ -9,8 +9,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-          primaryColor: Color(0xFF6B24FF),
-          scaffoldBackgroundColor: Color(0xFF7a4ee0),),
+        primaryColor: Color(0xFF6B24FF),
+        scaffoldBackgroundColor: Color(0xFF7a4ee0),
+      ),
       home: PriceScreen(),
     );
   }

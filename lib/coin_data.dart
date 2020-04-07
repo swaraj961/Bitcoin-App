@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const apiurl = 'https://rest.coinapi.io/v1/exchangerate/BTC'; 
-const apikey='76B5E42E-38B7-441A-923E-EA37C8608037'; 
+const apiurl1 = 'https://rest.coinapi.io/v1/exchangerate/BTC';
+const apiurl2 = 'https://rest.coinapi.io/v1/exchangerate/ETH';
+const apiurl3 = 'https://rest.coinapi.io/v1/exchangerate/LTC';
+const apikey = '3762E6EA-B1C4-4039-AF9B-365AE365D372';
 
+//3762E6EA-B1C4-4039-AF9B-365AE365D372 backup key
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -36,23 +39,48 @@ const List<String> cryptoList = [
 ];
 
 class CoinData {
- Future getdata(String selectedcurrency ) async {
-   String requrl = '$apiurl/$selectedcurrency?apikey=$apikey';
- http.Response response =  await http.get(requrl);
- if(response.statusCode == 200){
-var fetchdata = jsonDecode(response.body);
-var rate = fetchdata['rate'];
-print(rate);
+  Future getdataBTC(String selectedcurrency) async {
+    String requrl1 = '$apiurl1/$selectedcurrency?apikey=$apikey';
+    http.Response response = await http.get(requrl1);
+    if (response.statusCode == 200) {
+      var fetchdata = jsonDecode(response.body);
+      var rate = fetchdata['rate'];
+      print(rate);
 
-return rate;
- }
-else {
-  print(response.statusCode);
-  
-}
+      return rate;
+    } else {
+      print(response.statusCode);
+      throw 'cant fetch data';
+    }
+  }
 
- }
+  Future getdataETH(String selectedcurrency) async {
+    String requrl2 = '$apiurl2/$selectedcurrency?apikey=$apikey';
+    http.Response response = await http.get(requrl2);
+    if (response.statusCode == 200) {
+      var fetchdata = jsonDecode(response.body);
+      var rate = fetchdata['rate'];
+      print(rate);
 
+      return rate;
+    } else {
+      print(response.statusCode);
+      throw 'cant fetch data';
+    }
+  }
 
+  Future getdataLTC(String selectedcurrency) async {
+    String requrl3 = '$apiurl2/$selectedcurrency?apikey=$apikey';
+    http.Response response = await http.get(requrl3);
+    if (response.statusCode == 200) {
+      var fetchdata = jsonDecode(response.body);
+      var rate = fetchdata['rate'];
+      print(rate);
 
+      return rate;
+    } else {
+      print(response.statusCode);
+      throw 'cant fetch data';
+    }
+  }
 }
