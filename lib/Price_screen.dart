@@ -28,7 +28,8 @@ class _PriceScreenState extends State<PriceScreen> {
         onChanged: (value) {
           setState(() {
             selectedcurreency = value;
-           print(value);
+            getcoindata();
+          //  print(value);
           });
         });
   }
@@ -64,16 +65,16 @@ class _PriceScreenState extends State<PriceScreen> {
     return widget;
   }
 
-  String selectedcurreency;
-  String bitcoinvalueinUSD = '';
+  var selectedcurreency;
+  String bitcoinvalue = '';
 
 void getcoindata() async{
  
   try{
-     var data = await c1.getdata();
+     var data = await c1.getdata(selectedcurreency);
 setState(() {
-  bitcoinvalueinUSD= data;
-  print(bitcoinvalueinUSD);
+  bitcoinvalue= data;
+  print(bitcoinvalue);
 });
     
   } catch(e){
@@ -113,7 +114,7 @@ setState(() {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1Btc = $bitcoinvalueinUSD USD',
+                  '1BTC = $bitcoinvalue $selectedcurreency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,

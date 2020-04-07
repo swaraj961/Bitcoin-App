@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC/USD.json';
+const apiurl = 'https://rest.coinapi.io/v1/exchangerate/BTC'; 
+const apikey='76B5E42E-38B7-441A-923E-EA37C8608037'; 
 
 const List<String> currenciesList = [
   'AUD',
@@ -35,13 +36,12 @@ const List<String> cryptoList = [
 ];
 
 class CoinData {
- Future getdata() async {
- http.Response response =  await http.get(url);
+ Future getdata(String selectedcurrency ) async {
+   String requrl = '$apiurl/$selectedcurrency?apikey=$apikey';
+ http.Response response =  await http.get(requrl);
  if(response.statusCode == 200){
 var fetchdata = jsonDecode(response.body);
-// String currency = jsonDecode(fetchdata)['bpi']['USD']['code'];
-// print(currency);
- var rate = fetchdata['bpi']['USD']['rate'];
+var rate = fetchdata['rate'];
 print(rate);
 
 return rate;
