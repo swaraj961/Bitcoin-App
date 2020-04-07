@@ -70,7 +70,7 @@ class CoinData {
   }
 
   Future getdataLTC(String selectedcurrency) async {
-    String requrl3 = '$apiurl2/$selectedcurrency?apikey=$apikey';
+    String requrl3 = '$apiurl3/$selectedcurrency?apikey=$apikey';
     http.Response response = await http.get(requrl3);
     if (response.statusCode == 200) {
       var fetchdata = jsonDecode(response.body);
